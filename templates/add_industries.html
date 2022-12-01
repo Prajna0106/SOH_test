@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container{
+           
+    width: 380px;
+    height: 218px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 41px;
+    overflow: hidden;
+    background-color: #E5B8F4;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   }
+.wrapper{
+    height: 100%;
+    width: 100%;
+    background-color: #FFDCA9;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    
+}
+#frm{
+        display: grid;
+        place-items: center;
+}
+#btn{
+    top: 207px;
+    left: 173px;
+    position: absolute;
+    width: 110px;
+    height: 19%;
+    background: cornflowerblue;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+       
+    </style>
+    <title>Add Industries</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form id="frm" action="/industry/admin" method="post" >
+                <label for="Industry" style="font-size: larger;">Industry Name:</label><br>
+                <input type="text" id="industry" name="industry"><br>
+                <label for="Address" style="font-size: larger;">Address:</label><br>
+                <input type="text" id="address" name="address"><br>
+                <button type="submit" id="btn">Add</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

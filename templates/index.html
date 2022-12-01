@@ -67,19 +67,19 @@
         </svg>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="/index">
+        <li class="nav-item"><a class="nav-link" href="/index/admin">
             <svg class="nav-icon">
               <use xlink:href="/static/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
-        <li class="nav-item"><a class="nav-link" href="/tracking" target="_top">
+        <li class="nav-item"><a class="nav-link" href="/tracking/admin" target="_top">
             <svg class="nav-icon">
               
             </svg> Tracking</a></li>
-        <li class="nav-item"><a class="nav-link" href="/qrcode" target="_top">
+        <li class="nav-item"><a class="nav-link" href="/qrcode/admin" target="_top">
             <svg class="nav-icon">
                 
             </svg>QR Scanner</a></li>
-            <li class="nav-item"><a class="nav-link" href="/pred" target="_top">
+            <li class="nav-item"><a class="nav-link" href="/pred/admin" target="_top">
               <svg class="nav-icon">
                   
               </svg>Garbage Scanner</a></li>
@@ -87,7 +87,7 @@
         </li>
 
 
-        <li class="nav-item"><a class="nav-link" href="/error" target="_top">
+        <li class="nav-item"><a class="nav-link" href="/industry/admin" target="_top">
           <svg class="nav-icon">
               
           </svg>Add Industries</a></li>
@@ -98,7 +98,7 @@
         
         
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="/" target="_top">
+            <li class="nav-item"><a class="nav-link" href="/login/admin" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="/static/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                 </svg> Log Out</a></li>
@@ -215,7 +215,7 @@
               <div class="card mb-4 text-white bg-info">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
-                    <div class="fs-4 fw-semibold">0 <span class="fs-6 fw-normal"></span></div>
+                    <div class="fs-4 fw-semibold">{{ tot_ind }} <span class="fs-6 fw-normal"></span></div>
                     <div>Industry</div>
                   </div>
                   <div class="dropdown">
@@ -234,7 +234,7 @@
               <div class="card mb-4 text-white bg-danger">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
-                    <div class="fs-4 fw-semibold">1 <span class="fs-6 fw-normal"></span></div>
+                    <div class="fs-4 fw-semibold">{{ tot_req }} <span class="fs-6 fw-normal"></span></div>
                     <div>Requests</div>
                   </div>
                   <div class="dropdown">
@@ -273,7 +273,7 @@
                         <!-- /.col-->
                         <div class="col-6">
                           <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis">E-Waste</small>
-                            <div class="fs-5 fw-semibold">22.643</div>
+                            <div class="fs-5 fw-semibold">22</div>
                           </div>
                         </div>
                         <!-- /.col-->
@@ -363,13 +363,13 @@
                       <div class="row">
                         <div class="col-6">
                           <div class="border-start border-start-4 border-start-warning px-3 mb-3"><small class="text-medium-emphasis">Organic Waste</small>
-                            <div class="fs-5 fw-semibold">78.623</div>
+                            <div class="fs-5 fw-semibold">78</div>
                           </div>
                         </div>
                         <!-- /.col-->
                         <div class="col-6">
                           <div class="border-start border-start-4 border-start-success px-3 mb-3"><small class="text-medium-emphasis">Non-biodegradable Waste</small>
-                            <div class="fs-5 fw-semibold">49.123</div>
+                            <div class="fs-5 fw-semibold">49</div>
                           </div>
                         </div>
                         <!-- /.col-->
@@ -389,17 +389,44 @@
                               <use xlink:href="/static/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
                             </svg>
                           </th>
-                          <th>User</th>
+                          <th>Pending Requests</th>
                           <th class="text-center">State</th>
-                          <th>Usage</th>
+                          <!-- <th>Usage</th> -->
                           <th class="text-center"></th>
-                          <th>Activity</th>
+                          <th>Status</th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
+
+                        {% if tot_req != 0 %}
+                        {% for i in total %}
+                          <tr class="align-middle">
+                          <td class="text-center">
+                            <div class="avatar avatar-md"><img class="avatar-img" src="/static/assets/img/avatars/3.jpg" alt="user@email.com"><span class="avatar-status bg-warning"></span></div>
+                          </td>
+                          <td>
+                            <div>{{ i[0] }}</div>
+                            <div class="small text-medium-emphasis"><span>{{ i[1] }}</span> | {{i[2]}} </div>
+                          </td>
+                          <td class="text-center">
+                          <p>Odisha</p>
+                          </td>
+                          <td class="text-center">
+                            
+                          </td>
+                          <td>
+                            <div class="small text-medium-emphasis">Status</div>
+                            <div class="fw-semibold">Active</div>
+                          </td>
+                          </td>
+                          </tr>
+
+
+                        {% endfor%}
+                        {% endif %}
                         
-                        <tr class="align-middle">
+                        <!-- <tr class="align-middle">
                           <td class="text-center">
                             <div class="avatar avatar-md"><img class="avatar-img" src="/static/assets/img/avatars/3.jpg" alt="user@email.com"><span class="avatar-status bg-warning"></span></div>
                           </td>
@@ -410,26 +437,41 @@
                           <td class="text-center">
                           <p>Odisha</p>
                           </td>
+                          <td class="text-center">
+                            
+                          </td>
                           <td>
-                            <div class="clearfix">
-                              <div class="float-start">
-                                <div class="fw-semibold">74%</div>
-                              </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
-                            </div>
-                            <div class="progress progress-thin">
-                              <div class="progress-bar bg-warning" role="progressbar" style="width: 74%" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <div class="small text-medium-emphasis">Status</div>
+                            <div class="fw-semibold">Active</div>
+                          </td>
+                          </td>
+                        </tr> -->
+
+
+
+                        <!-- <tr class="align-middle">
+                          <td class="text-center">
+                            <div class="avatar avatar-md"><img class="avatar-img" src="/static/assets/img/avatars/3.jpg" alt="user@email.com"><span class="avatar-status bg-warning"></span></div>
+                          </td>
+                          <td>
+                            <div>Soumesh Mohanty</div>
+                            <div class="small text-medium-emphasis"><span>9423242344</span> | Hig 125 Niladri Vihar Bbsr </div>
+                          </td>
+                          <td class="text-center">
+                          <p>Odisha</p>
                           </td>
                           <td class="text-center">
                             
                           </td>
                           <td>
-                            <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">1 hour ago</div>
+                            <div class="small text-medium-emphasis">Status</div>
+                            <div class="fw-semibold">Active</div>
                           </td>
                           </td>
-                        </tr>
+                        </tr> -->
+
+
+
                       </tbody>
                     </table>
                   </div>

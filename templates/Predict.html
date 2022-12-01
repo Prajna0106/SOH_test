@@ -7,18 +7,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body{
+      display: grid;
+        place-items: center;
+        background-color: beige;
+    }
+    h1{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-  <h1 class="jumbotron bg-primary">Image Classfication</h1>
+  <h1 class="jumbotron bg-primary">Garbage Classfication</h1>
   <br><br>
-  <form class="form-horizontal" action="/predict" method="post" enctype="multipart/form-data">
+  <form class="form-horizontal" action="/predict/admin" method="post" enctype="multipart/form-data">
 
     <label for="cars">Choose to segregate:</label>
 <select name="ml_model" id="ml_model">
   <option value="OR">Organic vs Recyclable</option>
-  <option value="6Classes">6 classes </option>
+  <option value="6Classes">Other Classification </option>
   
 </select>
 
@@ -39,7 +49,7 @@
   </form>
 
 	{% if t %}
-  <img src="{{img_p}}" height="400px" width="400px">
+  <img src="{{ img_p }}" height="400px" width="400px">
 	<h2> {{ t }}</h2>
 
 	{% endif %}
